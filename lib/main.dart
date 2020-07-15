@@ -1,105 +1,114 @@
-import 'dart:ui';
-
-import 'package:flare_flutter/flare_actor.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:designapp/constants.dart';
+import 'package:designapp/screens/sign_in.dart';
 import 'package:flutter/material.dart';
-import 'package:velocity_x/velocity_x.dart';
 
-import 'scrrens/Profile.dart';
+void main() => runApp(MyApp());
 
-void main()
-{
-runApp(MaterialApp(
-  debugShowCheckedModeBanner: false,
-  home: Homee(),
-));
-}
-
-class Homee extends StatelessWidget
-{
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return Scaffold(
-
-      body: Column(
-      children: <Widget>[
-        Container(
-          height: 385,
-          width: double.infinity,
-          child: FlareActor("assets/Aditya.flr", alignment:Alignment.center, fit:BoxFit.contain, animation:"idle"),
+    return MaterialApp(
+      title: 'Auth Screen 1',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        primaryColor: kPrimaryColor,
+        scaffoldBackgroundColor: kBackgroundColor,
+        textTheme: TextTheme(
+          display1: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          button: TextStyle(color: kPrimaryColor),
+          headline:
+          TextStyle(color: Colors.white, fontWeight: FontWeight.normal),
         ),
-
-        Container(
-          child: Center(
-            child: Text("Welcome To ResourceShare",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 23,color: Color.fromRGBO(130, 140, 237, 1)),),
-          ),
-        ),
-        Container(
-          width: 270,
-          height: 40,
-          decoration: BoxDecoration(
-           borderRadius: BorderRadius.circular(13),
-           border: Border.all(width: 2,),
-            color: Colors.white ,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey
-              )
-            ]
-          ),
-          child: TextField(
-            decoration: InputDecoration(
-             labelText: "Username",
+        inputDecorationTheme: InputDecorationTheme(
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.white.withOpacity(.2),
             ),
           ),
         ),
-        SizedBox(
-          height: 20,
-        ),
-        Container(
-          width: 270,
-          height: 40,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(13),
-              border: Border.all(width: 2,),
-              color: Colors.white ,
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.grey
-                )
-              ]
-          ),
-          child: TextField(
-            decoration: InputDecoration(
-              labelText: "Password",
-            ),
-          ),
-        ),
-        SizedBox(
-          height: 20,
-        ),
-        Container(
-          width: 160,
-          height: 40,
-
-          decoration: BoxDecoration(
-            color: Color.fromRGBO(130, 170, 237, 1),
-            borderRadius: BorderRadius.circular(14),
-          ),
-          child: MaterialButton(
-            child: Text("Login",style: TextStyle(fontSize: 12,color: Colors.white),),
-            onPressed: ()
-            {
-              Navigator.push(context,MaterialPageRoute(builder: (context)=>Profile()));
-            },
-          ),
-        )
-
-      ],
-
-    ),
+      ),
+      home: WelcomeScreen(),
     );
   }
+}
 
+class WelcomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            flex: 3,
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/perosn.jpeg"),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: "Resource Sharing\n",
+                        style: Theme.of(context).textTheme.display1,
+                      ),
+                      TextSpan(
+                        text: "MASTER THE ART OF LEARNING",
+                        style: Theme.of(context).textTheme.headline,
+                      )
+                    ],
+                  ),
+                ),
+                FittedBox(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return SignInScreen();
+                        },
+                      ));
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(bottom: 25),
+                      padding:
+                      EdgeInsets.symmetric(horizontal: 26, vertical: 16),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: kPrimaryColor,
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          Text(
+                            "START LEARNING",
+                            style: Theme.of(context).textTheme.button.copyWith(
+                              color: Colors.black,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Icon(
+                            Icons.arrow_forward,
+                            color: Colors.black,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
