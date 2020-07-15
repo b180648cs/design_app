@@ -1,16 +1,3 @@
-# designapp
-
-A new Flutter application.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+A visual outlook of a resource sharing platform just a layout that can be implemented 
+Please while using this app turn on your internet as i have used webview plugin for one of the screens
+images of the ui is available in issues page better experience would be to run the fully functional app on your native device
